@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import <QuartzCore/QuartzCore.h>
+#import "SourceTableViewController.h"
 
 
 static NSInteger kItemViewIndex = 100;
@@ -66,9 +67,13 @@ static NSInteger kItemViewIndex = 100;
   self.view.backgroundColor = [UIColor blackColor];
   
   
-  UIBarButtonItem *popoverItem = [[UIBarButtonItem alloc] initWithTitle:@"More Items" style:UIBarButtonItemStyleBordered target:self action:@selector(showMoreItems:)];
-  self.navigationItem.leftBarButtonItem = popoverItem;
-  
+  UIBarButtonItem *moreItems = [[UIBarButtonItem alloc] initWithTitle:@"More Items" style:UIBarButtonItemStyleBordered target:self action:@selector(showMoreItems:)];
+  self.navigationItem.leftBarButtonItem = moreItems;
+
+  if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+    UIBarButtonItem *tableItems = [[UIBarButtonItem alloc] initWithTitle:@"Table of Items" style:UIBarButtonItemStyleBordered target:self action:@selector(showTableOfItems:)];
+    self.navigationItem.rightBarButtonItem = tableItems;
+  }
   
   OBDragDropManager *dragDropManager = [OBDragDropManager sharedManager];
   
@@ -367,6 +372,25 @@ static NSInteger kLabelTag = 2323;
     [UIView animateWithDuration:0.2 animations:^{
       additionalSourcesViewController.view.alpha = 1.0;
     }];
+  }
+}
+
+
+-(IBAction) showTableOfItems:(id)sender
+{
+  // iPad only for now
+  UIViewController *tableViewController = [[SourceTableViewController alloc] initWithStyle:UITableViewStylePlain];
+  
+  if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+    tableViewController.contentSizeForViewInPopover = CGSizeMake(320, 480);
+    sourcesPopoverController = [[UIPopoverController alloc] initWithContentViewController:tableViewController];
+    sourcesPopoverController.delegate = self;
+    [sourcesPopoverController presentPopoverFromBarButtonItem:sender permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+    sourcesPopoverController.passthroughViews = nil;
+  }
+  else {
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:tableViewController];
+    [self presentViewController:navController animated:YES completion:nil];
   }
 }
 

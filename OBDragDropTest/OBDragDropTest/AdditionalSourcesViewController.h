@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "OBDragDropManager.h"
 
+// A simple example of an external view providing sources of items for drag and drop.
+
 @interface AdditionalSourcesViewController : UIViewController <OBOvumSource>
 
 @end
