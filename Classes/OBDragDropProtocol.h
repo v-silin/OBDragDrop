@@ -77,8 +77,8 @@ typedef NS_ENUM(NSUInteger, OBDropAction)
 
 @protocol OBDragDropGestureRecognizer <NSObject>
 
-@property (nonatomic, retain) OBOvum *ovum;
-@property (nonatomic, assign) id<OBOvumSource> ovumSource;
+@property (nonatomic, strong) OBOvum *ovum;
+@property (nonatomic, weak) id<OBOvumSource> ovumSource;
 
 @end
 
