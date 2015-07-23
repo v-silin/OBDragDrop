@@ -48,6 +48,7 @@
 @property (nonatomic, weak) UIView *currentDropHandlingView;
 @property (nonatomic, strong) UIView *dragView;
 @property (nonatomic, assign) CGPoint dragViewInitialCenter;
+@property (nonatomic, assign) CGSize dragViewInitialSize;
 @property (nonatomic, assign) BOOL isCentered;
 @property (nonatomic, assign) BOOL shouldScale;
 

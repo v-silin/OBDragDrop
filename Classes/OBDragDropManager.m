@@ -22,6 +22,7 @@
 
 @synthesize dragView;
 @synthesize dragViewInitialCenter;
+@synthesize dragViewInitialSize;
 
 @synthesize isCentered;
 @synthesize shouldScale;
@@ -343,6 +344,7 @@
     [overlayWindow addSubview:dragView];
     recognizer.ovum.dragView = dragView;
     recognizer.ovum.dragViewInitialCenter = dragView.center;
+    recognizer.ovum.dragViewInitialSize = dragView.frame.size;
 
     if (!recognizer.ovum.isCentered)
     {
