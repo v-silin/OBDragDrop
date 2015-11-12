@@ -60,6 +60,8 @@
 @end
 
 
+#define OBDRAGDROPMANAGER_IS_IOS7_OR_EARLIER ([[[UIDevice currentDevice] systemVersion] compare:@"8.0" options:NSNumericSearch] != NSOrderedAscending)
+
 
 @implementation OBDragDropManager
 
@@ -83,13 +85,16 @@
   self = [super init];
   if (self)
   {
-    __weak id __self = self;
-    [[NSNotificationCenter defaultCenter] addObserverForName:UIApplicationDidChangeStatusBarOrientationNotification
-                                                      object:[UIApplication sharedApplication]
-                                                       queue:[NSOperationQueue mainQueue]
-                                                  usingBlock:^(NSNotification *notification) {
-                                                    [__self handleApplicationOrientationChange:notification];
-                                                  }];
+    if (OBDRAGDROPMANAGER_IS_IOS7_OR_EARLIER)
+    {
+      __weak id __self = self;
+      [[NSNotificationCenter defaultCenter] addObserverForName:UIApplicationDidChangeStatusBarOrientationNotification
+                                                                                                        object:[UIApplication sharedApplication]
+                                                                                                           queue:[NSOperationQueue mainQueue]
+                                                                                                  usingBlock:^(NSNotification *notification) {
+                                                                                                      [__self handleApplicationOrientationChange:notification];
+                                                                                                  }];
+    }
   }
   return self;
 }
@@ -97,8 +102,10 @@
 
 -(void) dealloc
 {
-  [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationDidChangeStatusBarOrientationNotification object:[UIApplication sharedApplication]];
-
+  if (OBDRAGDROPMANAGER_IS_IOS7_OR_EARLIER)
+  {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationDidChangeStatusBarOrientationNotification object:[UIApplication sharedApplication]];
+  }
 }
 
 
@@ -139,7 +146,8 @@
   self.overlayWindow.windowLevel = UIWindowLevelAlert;
   self.overlayWindow.hidden = YES;
   self.overlayWindow.userInteractionEnabled = NO;
-  self.overlayWindow.transform = [self transformForOrientation:[[UIApplication sharedApplication] statusBarOrientation]];
+  if (OBDRAGDROPMANAGER_IS_IOS7_OR_EARLIER)
+    self.overlayWindow.transform = [self transformForOrientation:[[UIApplication sharedApplication] statusBarOrientation]];
 }
 
 
