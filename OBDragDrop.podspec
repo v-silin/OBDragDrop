@@ -1,7 +1,7 @@
 Pod::Spec.new do |spec|
   spec.name = "OBDragDrop"
-  spec.version = '1.0.1'
-  spec.source = {:git => 'https://github.com/Oblong/OBDragDrop.git', :tag => "1.0.1"}
+  spec.version = '1.0.2'
+  spec.source = {:git => 'https://github.com/Oblong/OBDragDrop.git', :tag => "1.0.2"}
   spec.source_files = ['Classes/*.{h,m}']
   spec.platform = :ios, '5.0'
   spec.frameworks = 'UIKit'
