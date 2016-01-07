@@ -60,7 +60,7 @@
 @end
 
 
-#define OBDRAGDROPMANAGER_IS_IOS7_OR_EARLIER ([[[UIDevice currentDevice] systemVersion] compare:@"8.0" options:NSNumericSearch] != NSOrderedAscending)
+#define OBDRAGDROPMANAGER_IS_IOS8_OR_EARLIER ([[[UIDevice currentDevice] systemVersion] compare:@"9.0" options:NSNumericSearch] != NSOrderedDescending)
 
 
 @implementation OBDragDropManager
@@ -85,7 +85,7 @@
   self = [super init];
   if (self)
   {
-    if (OBDRAGDROPMANAGER_IS_IOS7_OR_EARLIER)
+    if (OBDRAGDROPMANAGER_IS_IOS8_OR_EARLIER)
     {
       __weak id __self = self;
       [[NSNotificationCenter defaultCenter] addObserverForName:UIApplicationDidChangeStatusBarOrientationNotification
@@ -102,7 +102,7 @@
 
 -(void) dealloc
 {
-  if (OBDRAGDROPMANAGER_IS_IOS7_OR_EARLIER)
+  if (OBDRAGDROPMANAGER_IS_IOS8_OR_EARLIER)
   {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationDidChangeStatusBarOrientationNotification object:[UIApplication sharedApplication]];
   }
@@ -146,7 +146,7 @@
   self.overlayWindow.windowLevel = UIWindowLevelAlert;
   self.overlayWindow.hidden = YES;
   self.overlayWindow.userInteractionEnabled = NO;
-  if (OBDRAGDROPMANAGER_IS_IOS7_OR_EARLIER)
+  if (OBDRAGDROPMANAGER_IS_IOS8_OR_EARLIER)
     self.overlayWindow.transform = [self transformForOrientation:[[UIApplication sharedApplication] statusBarOrientation]];
 }
 
@@ -318,7 +318,7 @@
     
   UIWindow *hostWindow = recognizer.view.window;
   CGPoint locationInHostWindow = [recognizer locationInView:hostWindow];
-  CGPoint locationInOverlayWindow = [recognizer locationInView:overlayWindow];
+  CGPoint locationInOverlayWindow = OBDRAGDROPMANAGER_IS_IOS8_OR_EARLIER ? [recognizer locationInView:overlayWindow] : locationInHostWindow;
   currentLocationInHostWindow = locationInHostWindow;
   currentLocationInOverlayWindow = locationInOverlayWindow;
 
