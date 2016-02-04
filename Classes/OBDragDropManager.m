@@ -60,8 +60,7 @@
 @end
 
 
-#define OBDRAGDROPMANAGER_IS_IOS7_OR_EARLIER ([[[UIDevice currentDevice] systemVersion] compare:@"8.0" options:NSNumericSearch] != NSOrderedAscending)
-
+#define OBDRAGDROPMANAGER_IS_IOS7_OR_EARLIER (NSFoundationVersionNumber < NSFoundationVersionNumber_iOS_8_0)
 
 @implementation OBDragDropManager
 
@@ -148,6 +147,8 @@
   self.overlayWindow.userInteractionEnabled = NO;
   if (OBDRAGDROPMANAGER_IS_IOS7_OR_EARLIER)
     self.overlayWindow.transform = [self transformForOrientation:[[UIApplication sharedApplication] statusBarOrientation]];
+  else
+    self.overlayWindow.rootViewController = [UIViewController new];
 }
 
 
