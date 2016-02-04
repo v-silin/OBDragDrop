@@ -21,6 +21,7 @@
 		3968602615B864B0009C3D7B /* UIView+OBDropZone.m in Sources */ = {isa = PBXBuildFile; fileRef = 3968602315B864B0009C3D7B /* UIView+OBDropZone.m */; };
 		397E048716DB7C1E00DC9715 /* AdditionalSourcesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 397E048616DB7C1E00DC9715 /* AdditionalSourcesViewController.m */; };
 		39B6F7DD1AAF7AE5002B8B41 /* SourceTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39B6F7DC1AAF7AE5002B8B41 /* SourceTableViewController.m */; };
+		BDF855EF1C63C1A900B55B29 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BDF855EE1C63C1A900B55B29 /* Launch Screen.storyboard */; };
 		F302486C17AC224D00346CE9 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F302486B17AC224D00346CE9 /* Default-568h@2x.png */; };
 /* End PBXBuildFile section */
 
@@ -52,6 +53,7 @@
 		39B6F7DB1AAF7AE5002B8B41 /* SourceTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SourceTableViewController.h; sourceTree = "<group>"; };
 		39B6F7DC1AAF7AE5002B8B41 /* SourceTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SourceTableViewController.m; sourceTree = "<group>"; };
 		39F0AAC316C8FB3B008B6482 /* OBDragDrop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OBDragDrop.h; path = ../../Classes/OBDragDrop.h; sourceTree = "<group>"; };
+		BDF855EE1C63C1A900B55B29 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		F302486B17AC224D00346CE9 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -73,6 +75,7 @@
 		390E610D14F6CB8100F8FA74 = {
 			isa = PBXGroup;
 			children = (
+				BDF855EE1C63C1A900B55B29 /* Launch Screen.storyboard */,
 				F302486B17AC224D00346CE9 /* Default-568h@2x.png */,
 				390E612214F6CB8100F8FA74 /* OBDragDropTest */,
 				390E611B14F6CB8100F8FA74 /* Frameworks */,
@@ -195,6 +198,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BDF855EF1C63C1A900B55B29 /* Launch Screen.storyboard in Resources */,
 				390E612714F6CB8100F8FA74 /* InfoPlist.strings in Resources */,
 				F302486C17AC224D00346CE9 /* Default-568h@2x.png in Resources */,
 			);
