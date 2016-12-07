@@ -40,8 +40,16 @@
 
 - (void)setRootViewController:(UIViewController *)rootViewController
 {
-  [super setRootViewController:rootViewController];
-  self.hiddenRootViewController = nil;
+  if (self.hidden)
+  {
+    [super setRootViewController:nil];
+    self.hiddenRootViewController = rootViewController;
+  }
+  else
+  {
+    [super setRootViewController:rootViewController];
+    self.hiddenRootViewController = nil;
+  }
 }
 
 @end
