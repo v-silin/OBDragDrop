@@ -10,7 +10,7 @@
 #import "UIView+OBDropZone.h"
 #import "UIGestureRecognizer+OBDragDrop.h"
 #import "OBLongPressDragDropGestureRecognizer.h"
-
+#import "HideableWindow.h"
 
 @implementation OBOvum
 
@@ -141,7 +141,7 @@
     self.overlayWindow = nil;
   }
 
-  self.overlayWindow = [[UIWindow alloc] initWithFrame:mainWindow.frame];
+  self.overlayWindow = [[HideableWindow alloc] initWithFrame:mainWindow.frame];
   self.overlayWindow.windowLevel = UIWindowLevelAlert;
   self.overlayWindow.hidden = YES;
   self.overlayWindow.userInteractionEnabled = NO;
