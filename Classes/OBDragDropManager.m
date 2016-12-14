@@ -315,8 +315,10 @@
     if (![self ovumRecognizerShouldHandleTouch:recognizer]) {
         return;
     }
-    
-    
+
+  // Update window visibility asap to adjust its rootViewController orientation
+  overlayWindow.hidden = NO;
+
   UIWindow *hostWindow = recognizer.view.window;
   CGPoint locationInHostWindow = [recognizer locationInView:hostWindow];
   CGPoint locationInOverlayWindow = [recognizer locationInView:overlayWindow];
@@ -349,7 +351,6 @@
       dragView.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.33];
     }
 
-    overlayWindow.hidden = NO;
     [overlayWindow addSubview:dragView];
     recognizer.ovum.dragView = dragView;
     recognizer.ovum.dragViewInitialCenter = dragView.center;
