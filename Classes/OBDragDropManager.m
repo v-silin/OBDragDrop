@@ -11,6 +11,8 @@
 #import "UIGestureRecognizer+OBDragDrop.h"
 #import "OBLongPressDragDropGestureRecognizer.h"
 #import "HideableWindow.h"
+#import "HiddenRootViewController.h"
+
 
 @implementation OBOvum
 
@@ -146,9 +148,19 @@
   self.overlayWindow.hidden = YES;
   self.overlayWindow.userInteractionEnabled = NO;
   if (OBDRAGDROPMANAGER_IS_IOS7_OR_EARLIER)
+  {
     self.overlayWindow.transform = [self transformForOrientation:[[UIApplication sharedApplication] statusBarOrientation]];
+  }
   else
-    self.overlayWindow.rootViewController = [UIViewController new];
+  {
+    UIViewController *rootViewController = self.overlayWindow.rootViewController;
+    if (rootViewController)
+      self.overlayWindow.rootViewController = [[HiddenRootViewController alloc] initWithStatusBarStyle:rootViewController.preferredStatusBarStyle
+                                                                                             animation:rootViewController.preferredStatusBarUpdateAnimation
+                                                                                                hidden:rootViewController.prefersStatusBarHidden];
+    else
+      self.overlayWindow.rootViewController = [HiddenRootViewController new];
+  }
 }
 
 
