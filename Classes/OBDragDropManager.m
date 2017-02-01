@@ -142,7 +142,7 @@
     [self.overlayWindow removeFromSuperview];
     self.overlayWindow = nil;
   }
-
+  
   self.overlayWindow = [[HideableWindow alloc] initWithFrame:mainWindow.frame];
   self.overlayWindow.windowLevel = UIWindowLevelAlert;
   self.overlayWindow.hidden = YES;
@@ -158,6 +158,10 @@
       self.overlayWindow.rootViewController = [[HiddenRootViewController alloc] initWithStatusBarStyle:rootViewController.preferredStatusBarStyle
                                                                                              animation:rootViewController.preferredStatusBarUpdateAnimation
                                                                                                 hidden:rootViewController.prefersStatusBarHidden];
+    else if (mainWindow.rootViewController)
+      self.overlayWindow.rootViewController = [[HiddenRootViewController alloc] initWithStatusBarStyle:mainWindow.rootViewController.preferredStatusBarStyle
+                                                                                             animation:mainWindow.rootViewController.preferredStatusBarUpdateAnimation
+                                                                                                hidden:mainWindow.rootViewController.prefersStatusBarHidden];
     else
       self.overlayWindow.rootViewController = [HiddenRootViewController new];
   }
