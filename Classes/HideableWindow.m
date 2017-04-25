@@ -25,7 +25,11 @@
   // Instead of use real hiding, the root view controller needs to be removed.
   if (hidden)
   {
-    self.hiddenRootViewController = self.rootViewController;
+    if (self.rootViewController)
+    {
+      self.hiddenRootViewController = self.rootViewController;
+    }
+
     [super setRootViewController:nil];
   }
   else
