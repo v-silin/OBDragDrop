@@ -20,7 +20,7 @@
 
 - (instancetype)initWithStatusBarStyle:(UIStatusBarStyle)statusBarStyle animation:(UIStatusBarAnimation)statusBarAnimation hidden:(BOOL)statusBarHidden
 {
-  if (self == [super init])
+  if (self = [super init])
   {
     _statusBarStyle = statusBarStyle;
     _statusBarAnimation = statusBarAnimation;
